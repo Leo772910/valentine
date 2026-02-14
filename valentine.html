@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Valentine for Rosalie 💖</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to bottom right, #ffc0cb, #ff99cc);
+    text-align: center;
+    color: #fff;
+}
+
+.page {
+    display: none;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.active {
+    display: flex;
+}
+
+button {
+    padding: 12px 25px;
+    margin: 10px;
+    border: none;
+    border-radius: 20px;
+    background-color: #ff4da6;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #ff1a8c;
+}
+
+input {
+    padding: 10px;
+    border-radius: 15px;
+    border: none;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.gift-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    padding: 20px;
+}
+
+.gift-container img {
+    width: 250px;
+    border-radius: 20px;
+    box-shadow: 0 0 20px pink;
+}
+
+.gift-text {
+    max-width: 300px;
+    text-align: left;
+}
+
+h1, h2 {
+    text-shadow: 0 0 10px hotpink;
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAME PAGE -->
+<div class="page active" id="namePage">
+    <h1>What's your name? 💕</h1>
+    <input type="text" id="nameInput" placeholder="Type here">
+    <button onclick="checkName()">Enter</button>
+    <p id="nameMessage"></p>
+</div>
+
+<!-- VALENTINE PAGE -->
+<div class="page" id="valentinePage">
+    <h1>Will you be my Valentine? 💖</h1>
+    <button onclick="goToGifts()">Yes of course</button>
+    <button onclick="tryAgain()">No thank you</button>
+    <p id="valMessage"></p>
+</div>
+
+<!-- GIFTS MENU -->
+<div class="page" id="giftsPage">
+    <h1>Choose your gift 🎁</h1>
+    <button onclick="showGift('flowers')">Gift 1</button>
+    <button onclick="showGift('dior')">Gift 2</button>
+    <button onclick="showGift('chocolate')">Gift 3</button>
+    <button onclick="showGift('essay')">Gift 4</button>
+</div>
+
+<!-- FLOWERS -->
+<div class="page" id="flowersPage">
+    <div class="gift-container">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyLmCIiQDXRTWdzGlEZRyWzYpqW2fFUqi1uQ&s">
+        <div class="gift-text">
+            <h2>For You 🌸</h2>
+            <p>Baby, from the day that I met you, you remind me of flowers because how sweet you are and how you make everyone feel better by being near them.</p>
+        </div>
+    </div>
+    <button onclick="backToGifts()">Back</button>
+</div>
+
+<!-- DIOR -->
+<div class="page" id="diorPage">
+    <div class="gift-container">
+        <img src="https://static.sweetcare.com/img/prd/max/v-637673068456170003/dior-015023di_03.jpg">
+        <div class="gift-text">
+            <h2>Miss Dior 💐</h2>
+            <p>I chose this because it feels soft and beautiful, just like you. I can’t smell it from here, but I know it would remind me of you every time.</p>
+        </div>
+    </div>
+    <button onclick="backToGifts()">Back</button>
+</div>
+
+<!-- CHOCOLATE -->
+<div class="page" id="chocolatePage">
+    <div class="gift-container">
+        <img src="https://i.pinimg.com/736x/44/c3/e6/44c3e6701d3700f570814e7e64822cc6.jpg">
+        <div class="gift-text">
+            <h2>Chocolates 🍫</h2>
+            <p>Sweet, simple, and comforting. Just like the way you talk to me when I need it. If I was there, we’d share them together.</p>
+        </div>
+    </div>
+    <button onclick="backToGifts()">Back</button>
+</div>
+
+<!-- ESSAY -->
+<div class="page" id="essayPage">
+    <div class="gift-container">
+        <div class="gift-text">
+            <h2>My Real Gift ❤️</h2>
+            <p>
+            Being long distance isn’t easy, but loving you makes it worth it. 
+            Even miles away, you’re still the first person I think about when I wake up and the last person I think about before I sleep.
+            I miss you in ways I can’t explain, but I also feel lucky every single day that you’re mine.
+            Distance can’t weaken what we have. If anything, it proves how real it is.
+            One day we won’t have screens between us. Until then, just know you are loved deeply, fully, and always.
+            </p>
+        </div>
+    </div>
+    <button onclick="backToGifts()">Back</button>
+</div>
+
+<script>
+function checkName() {
+    let name = document.getElementById("nameInput").value.trim();
+    let message = document.getElementById("nameMessage");
+
+    if (name.toLowerCase() === "rosalie") {
+        message.innerHTML = "HIIII WIFEEYYYY 💕";
+        setTimeout(() => {
+            switchPage("namePage", "valentinePage");
+        }, 1500);
+    } else {
+        message.innerHTML = "Another woman? Ew you disgust me.";
+    }
+}
+
+function tryAgain() {
+    document.getElementById("valMessage").innerHTML = "Try again please 🥺";
+}
+
+function goToGifts() {
+    switchPage("valentinePage", "giftsPage");
+}
+
+function showGift(gift) {
+    switchPage("giftsPage", gift + "Page");
+}
+
+function backToGifts() {
+    let pages = document.querySelectorAll(".page");
+    pages.forEach(p => p.classList.remove("active"));
+    document.getElementById("giftsPage").classList.add("active");
+}
+
+function switchPage(current, next) {
+    document.getElementById(current).classList.remove("active");
+    document.getElementById(next).classList.add("active");
+}
+</script>
+
+</body>
+</html>
+
